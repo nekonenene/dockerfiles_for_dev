@@ -1,4 +1,3 @@
-PREZTO_CONTAINER_NAME := prezto_01
 DEV_CONTAINER_NAME := hatone_dev_01
 RUBY_VER := "2.5.3"
 
@@ -11,7 +10,7 @@ else
 endif
 
 .PHONY: all
-all: build_all run_dev login_dev
+all: build_all run
 
 .PHONY: build_all
 build_all: build_prezto build_prezto_ruby build_dev
@@ -46,14 +45,6 @@ run:
 		--workdir /root \
 		hatone_dev:latest
 
-.PHONY: run_prezto
-run_prezto:
-	docker run \
-		-d \
-		--name $(PREZTO_CONTAINER_NAME) \
-		-i -t \
-		prezto:latest
-
 .PHONY: run_dev
 run_dev:
 	docker run \
@@ -62,14 +53,8 @@ run_dev:
 		-i -t \
 		hatone_dev:latest
 
-.PHONY: login_prezto
-# -it means --interactive --tty
-login_prezto:
-	docker exec -it \
-		--workdir /root \
-		$(PREZTO_CONTAINER_NAME) zsh
-
 .PHONY: login_dev
+# -it means --interactive --tty
 login_dev:
 	docker exec -it \
 		--workdir /root \
@@ -78,17 +63,9 @@ login_dev:
 .PHONY: clean
 clean: stop_dev rm_dev
 
-.PHONY: stop_prezto
-stop_prezto:
-	docker stop $(PREZTO_CONTAINER_NAME)
-
 .PHONY: stop_dev
 stop_dev:
 	docker stop $(DEV_CONTAINER_NAME)
-
-.PHONY: rm_prezto
-rm_prezto:
-	docker rm $(PREZTO_CONTAINER_NAME)
 
 .PHONY: rm_dev
 rm_dev:
