@@ -14,9 +14,13 @@ RUN \
     vim \
     wget
 
-# dotfiles
+## dotfiles
+# alias
 RUN \
-  echo 'alias ls="ls -a --color=auto"' >> $RC_PATH
+  echo $'\n\
+alias ls="ls -a --color=auto"\n\
+alias g="git"\n' \
+  >> $RC_PATH
 
 # Node.js / npm
 RUN \

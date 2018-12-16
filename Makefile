@@ -38,6 +38,14 @@ build_dev:
 			--build-arg RUBY_VER="$(RUBY_VER)" \
 			-t hatone_dev:latest
 
+.PHONY: run
+run:
+	docker run \
+		-it \
+		--rm \
+		--workdir /root \
+		hatone_dev:latest
+
 .PHONY: run_prezto
 run_prezto:
 	docker run \
