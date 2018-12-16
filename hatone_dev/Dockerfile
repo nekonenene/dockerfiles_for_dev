@@ -1,8 +1,11 @@
 FROM prezto_ruby:latest
 
-ARG RC_PATH="/root/.zshrc"
+ARG HOME_DIR="/root"
+ARG RC_PATH="$HOME_DIR/.zshrc"
 
 SHELL ["zsh", "-c"]
+
+RUN mkdir $HOME_DIR/Programs
 
 RUN \
   apt-get update && \
@@ -14,13 +17,16 @@ RUN \
     vim \
     wget
 
-## dotfiles
-# alias
+# dotfiles
 RUN \
   echo $'\n\
+## alias\n\
 alias ls="ls -a --color=auto"\n\
-alias g="git"\n' \
+alias g="git"\n\
+alias gad="git add ."' \
   >> $RC_PATH
+
+COPY files/.gitconfig /root
 
 # Node.js / npm
 RUN \

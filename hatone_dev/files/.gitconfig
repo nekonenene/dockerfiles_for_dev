@@ -1,0 +1,27 @@
+[user]
+	name = ハトネコエ (nekonenene)
+	email = hato.nekoe@gmail.com
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	a  = add
+	c  = commit
+	p  = push
+	f  = fetch
+	m  = merge
+	sb = submodule
+	sm = submodule
+	pl = pull --rebase
+	cl = clone --recursive
+	l1 = log -1
+	l3 = log -3
+	l5 = log -5
+	l7 = log -7
+[core]
+	editor = emacs
+	autocrlf = false
+[color]
+	ui = auto
+[push]
+	default = upstream
